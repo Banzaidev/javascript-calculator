@@ -3,6 +3,6 @@ import './operationButtons.css';
 
 export default function OperationButtons(id, value){
     return(
-        `<button id=${id} value=${value}>${value}</button>`
+        `<button class='operationButtons' id=${id} value=${value}>${value}</button>`
     )
 }
