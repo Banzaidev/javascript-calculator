@@ -3,7 +3,7 @@ import './Main.css'
 import NumberButtons from './NumberButtons';
 import OperationButtons from './operationButtons';
 import { numbers, operations } from './numberAndOperations';
-import { addNumber, valueStore, basicOperation, submit } from './store';
+import { addNumber, valueStore, basicOperation, submit} from './store';
 
 console.log(parseFloat('32-1'))
 
@@ -28,6 +28,7 @@ $.when($.ready).then(()=>{
     valueStore.dispatch(addNumber(e.target.value))
     $('#display').html(valueStore.getState().value)
   })
+
 
   $('.operationButtons').on('click', (e) =>{
     console.log(e.target.value)
