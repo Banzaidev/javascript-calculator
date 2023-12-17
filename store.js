@@ -1,4 +1,4 @@
-import { configureStore, createAction, createReducer } from "@reduxjs/toolkit";
+import { configureStore, createAction, createReducer} from "@reduxjs/toolkit";
 
 
 export const basicOperation = createAction('basicOperation')
@@ -8,12 +8,13 @@ export const addNumber = createAction('addNumber')
 
 const initialState = {
     'value': '',
-    'tempValue': 0
+    'tempValue': ''
 }
 
 
 
-const valueReducer = createReducer(initialState, (builder) => {
+
+/* const valueReducer = createReducer(initialState, (builder) => {
     builder.addCase(addNumber, (state,action) => {
         if(state.value != '0'){
             state.value += action.payload
@@ -55,6 +56,46 @@ const valueReducer = createReducer(initialState, (builder) => {
     builder.addCase(submit, (state) => {
         state.value = state.tempValue
         state.tempValue = 0
+    })
+}) */
+
+const valueReducer = createReducer(initialState, (builder) =>{
+    
+
+    builder.addCase(addNumber, (state,action) => {
+        if(state.value != '0'){
+            state.value += action.payload
+            
+        }
+        
+    })
+
+    builder.addCase(basicOperation, (state,action) => {
+        if(state.value != ''){
+            switch(action.payload){
+                case '+':
+                case '-':
+                case 'x':
+                case '/':
+                    let isValid = state.value
+                    isValid += action.payload
+
+                    let checkSymbols = (isValid.match(/[x+-\/]+/gm))
+                    if(checkSymbols.every((el) => el.length < 2)){
+                        state.value += action.payload
+                    }
+                    
+                    break
+                default:
+                    break
+            }
+        }
+
+    })
+
+
+    builder.addCase(submit, (state) => {
+        
     })
 })
 
