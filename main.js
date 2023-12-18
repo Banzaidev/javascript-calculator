@@ -3,16 +3,15 @@ import './Main.css'
 import NumberButtons from './NumberButtons';
 import OperationButtons from './operationButtons';
 import { numbers, operations } from './numberAndOperations';
-import { addNumber, valueStore, basicOperation, submit} from './store';
+import { addNumber, valueStore, basicOperation, submit,clear} from './store';
 
 console.log(parseFloat('32-1'))
 
 $('#app').html(
   `
     <div id='calculator'>
-      <div id='display'>
-        <div id='prevValue'></div>
-      </div>
+      <div id='display'>${valueStore.getState().value}</div>
+      <div id='prevValue'></div>
       <div id='numbers'>
         ${numbers.map((number=> NumberButtons(number.id, number.value))).join('')}
       </div>
@@ -32,10 +31,14 @@ $.when($.ready).then(()=>{
 
   $('.operationButtons').on('click', (e) =>{
     console.log(e.target.value)
-    if(e.target.value != '='){
+    if(e.target.value != '=' && e.target.value != 'AC'){
       valueStore.dispatch(basicOperation(e.target.value))
-    }else{
+    }
+    else if(e.target.value == '='){
       valueStore.dispatch(submit())
+    }
+    else{
+      valueStore.dispatch(clear())
     }
 
     $('#display').html(valueStore.getState().value)

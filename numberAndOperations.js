@@ -1,5 +1,5 @@
 import { valueStore } from './store';
-import { basicOperation, submit } from './store';
+import { basicOperation, submit, clear } from './store';
 
 export const numbers = [
     {
@@ -68,6 +68,10 @@ export const operations = [
     {
         id: 'equals',
         value: '=',
-        fn: () => valueStore.dispatch(submit())
+        
+    },
+    {
+        id: 'clear',
+        value: 'AC',
     }
 ]
