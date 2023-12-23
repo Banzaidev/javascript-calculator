@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 
 export default function NumberButtons(id, value){
     return(

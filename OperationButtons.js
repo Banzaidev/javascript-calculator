@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 
 export default function OperationButtons(id, value){
     return(
