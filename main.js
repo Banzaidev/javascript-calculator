@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import './Main.css'
+import './main.css'
 import NumberButtons from './NumberButtons';
 import OperationButtons from './operationButtons';
 import { numbers, operations } from './numberAndOperations';
