@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import './main.css'
-import NumberButtons from './NumberButtons';
-import OperationButtons from './operationButtons';
 import { numbers, operations } from './numberAndOperations';
 import { addNumber, valueStore, basicOperation, submit,clear} from './store';
 
