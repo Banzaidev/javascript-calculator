@@ -10,6 +10,7 @@ const initialState = {
     'value': '0',
     'tempValue': '0',
     'ans': '',
+
 }
 
 
@@ -26,10 +27,26 @@ const valueReducer = createReducer(initialState, (builder) =>{
                 state.ans = ''
             }
             else{
-                state.value += action.payload
-                state.tempValue = state.value
+
+                if(action.payload == '.'){
+                    /* 
+                    Matches all the digit and dots, then verify if there are any of the numbers 
+                    that doesn't include the dot, if that so the user can add the dot symbol 
+                    
+                    */
+                    if(state.value.match(/[\d.]+/g).some(number => !(number.includes('.')))){
+                        state.value += action.payload
+                        state.tempValue = state.value
+                    }
+                    
+
+                }else{
+                    state.value += action.payload
+                    state.tempValue = state.value
+                }
+
             }
-        
+
         }
 
     })
@@ -46,7 +63,16 @@ const valueReducer = createReducer(initialState, (builder) =>{
                         state.tempValue = state.ans
                         state.ans = ''
                     }
-                    state.value = `${state.tempValue}${symbol}`
+                    
+                    //required for the test to pass
+                    if(symbol == '-'){
+                        if(state.value[state.value.length - 1] != '-'){
+                            state.value += symbol
+                        }
+                        
+                    }else{
+                        state.value = `${state.tempValue}${symbol}`   
+                    }
                     
                     break
                 default:
@@ -63,8 +89,16 @@ const valueReducer = createReducer(initialState, (builder) =>{
     })
 
     builder.addCase(submit, (state) => {
-        state.ans = `${eval(state.tempValue)}`
+        try{
+            
+            state.ans = `${eval(state.tempValue)}`
+        }
+        catch{
+            state.ans = 'Math error'
+        }
         state.value = state.ans
+       
+        
     })
 
 })

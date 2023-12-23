@@ -5,7 +5,7 @@ import OperationButtons from './operationButtons';
 import { numbers, operations } from './numberAndOperations';
 import { addNumber, valueStore, basicOperation, submit,clear} from './store';
 
-console.log(parseFloat('32-1'))
+
 
 $('#app').html(
   `
@@ -30,7 +30,6 @@ $.when($.ready).then(()=>{
 
 
   $('.operationButtons').on('click', (e) =>{
-    console.log(e.target.value)
     if(e.target.value != '=' && e.target.value != 'AC'){
       valueStore.dispatch(basicOperation(e.target.value))
     }
