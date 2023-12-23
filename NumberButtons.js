@@ -1,5 +1,4 @@
 import $ from "jquery";
-import './numberButtons.css'
 
 
 export default function NumberButtons(id, value){
