@@ -1,6 +1,3 @@
-import { valueStore } from './store';
-import { basicOperation, submit, clear } from './store';
-
 export const numbers = [
     {
         id: 'zero',
